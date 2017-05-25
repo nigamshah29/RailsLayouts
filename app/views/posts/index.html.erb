@@ -1,0 +1,51 @@
+  <% content_for :left_column do %>
+    <h1>All Posts</h1>
+    <table class="table table-striped">
+      <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Author</th>
+      </tr>
+      <% @posts.each do |post| %>
+      <tr>
+          <td><%= post.title %></td>
+          <td><%= post.content %></td>
+          <td><%= post.user.first_name %> <%= post.user.last_name %></td>
+      </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+
+  <% content_for :middle_column do %>
+
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+      <% end %>
+    <% end %>
+
+    <h2>New Post </h2>
+    <form action="/posts" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      Title:<br>
+      <input type="text" name="title"><br><br>
+      Content:<br>
+      <textarea name="content" rows="8" cols="80"></textarea><br><br>
+    Author:<br>
+      <select name="user_id">
+        <% @users.each do |user| %>
+          <option value="<%= user.id %>"><%= "#{user.first_name} #{user.last_name}" %></option>
+        <% end %>
+      </select><br><br>
+      <input type="submit" class="btn btn-primary" value="Create Post">
+    </form>
+
+  <% end %>
+
+  <% content_for :right_column do %>
+
+    <h2>Go to Users Page</h2>
+    <p><%= link_to "All Users", '/', class: "btn btn-info" %></p>
+
+  <% end %>

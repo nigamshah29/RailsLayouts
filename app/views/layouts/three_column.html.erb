@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LayoutsAssignment</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          LEFT COLUMN
+          <%= yield :left_column %>
+        </div>
+        <div class="col-md-4">
+          MIDDLE COLUMN
+          <%= yield :middle_column %>
+        </div>
+        <div class="col-md-4">
+          RIGHT COLUMN
+          <%= yield :right_column %>
+        </div>
+      </div>
+
+      <%= yield %>
+
+    </div>
+  </body>
+</html>
